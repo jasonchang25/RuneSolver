@@ -1,5 +1,4 @@
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\bin\Debug\netcoreapp3.1\RuneSolver.exe
-C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.csprojAssemblyReference.cache
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.AssemblyInfoInputs.cache
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.AssemblyInfo.cs
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.csproj.CoreCompileInputs.cache

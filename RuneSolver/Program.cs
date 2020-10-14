@@ -2,7 +2,6 @@
 using Microsoft.Azure.CognitiveServices.Vision.CustomVision.Prediction.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -23,7 +22,8 @@ namespace RuneSolver
             _predictionKey = "e587c896f1664f8dacb25ce70dde10d9";
             _modelName = "RuneSolver";
             CustomVisionPredictionClient predictionApi = AuthenticatePrediction(_ENDPOINT, _predictionKey);
-            var runeImage = Path.Combine("2.png");
+            var path = Directory.GetCurrentDirectory();
+            var runeImage = "2.png";
             var timeTracker = 0;
             while (true)
             {
@@ -34,21 +34,26 @@ namespace RuneSolver
                 }
                 if (File.Exists(runeImage))
                 {
+                    Console.WriteLine("Rune Found, Solving Rune");
                     var solution = GetSolution(predictionApi, runeImage);
-                    solution.ForEach(c => Console.Write(c.TagName + ","));
+                    solution.ForEach(c => Console.Write(c.TagName + ", "));
                     SolveRune(solution);
                     Console.WriteLine("Rune Solved");
                     SummonHeal();
-                    File.Delete(runeImage);
+                    int count = Directory.GetFiles(path, "*", SearchOption.TopDirectoryOnly).Length;
+                    File.Move("2.png", "lach2_" + count + ".png");
+                    //File.Delete(runeImage);
                 }
+                timeTracker -= 5000;
                 Thread.Sleep(5000);
             }
         }
 
         private static void OpenEliteBox()
         {
+            Console.WriteLine("Opening Elite Box");
             for (var i = 0; i < 5; i++)
-            {
+            {                
                 KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_5, false, KeyInput.InputType.Keyboard);
                 Thread.Sleep(250);
             }            
@@ -69,16 +74,16 @@ namespace RuneSolver
             {
                 switch (key.TagName)
                 {
-                    case "Left":
+                    case "left":
                         KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, false, KeyInput.InputType.Keyboard);
                         break;
-                    case "Right":
+                    case "right":
                         KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_RIGHTARROW, false, KeyInput.InputType.Keyboard);
                         break;
-                    case "Down":
+                    case "down":
                         KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_DOWNARROW, false, KeyInput.InputType.Keyboard);
                         break;
-                    case "Up":
+                    case "up":
                         KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_UPARROW, false, KeyInput.InputType.Keyboard);
                         break;
                     default:
@@ -86,6 +91,10 @@ namespace RuneSolver
                 }
                 Thread.Sleep(500);
             }
+            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, true, KeyInput.InputType.Keyboard);
+            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_RIGHTARROW, true, KeyInput.InputType.Keyboard);
+            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_DOWNARROW, true, KeyInput.InputType.Keyboard);
+            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_UPARROW, true, KeyInput.InputType.Keyboard);
         }
 
         private static CustomVisionPredictionClient AuthenticatePrediction(string endpoint, string predictionKey)
