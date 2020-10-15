@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace RuneSolverUI
 {
@@ -63,6 +62,7 @@ namespace RuneSolverUI
             this.tt_unstickCharacter = new System.Windows.Forms.ToolTip(this.components);
             this.lb_information = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lb_contact = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.grp_Settings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -442,11 +442,10 @@ namespace RuneSolverUI
             this.lb_information.BackColor = System.Drawing.Color.Transparent;
             this.lb_information.Location = new System.Drawing.Point(12, 45);
             this.lb_information.Name = "lb_information";
-            this.lb_information.Size = new System.Drawing.Size(303, 60);
+            this.lb_information.Size = new System.Drawing.Size(344, 75);
             this.lb_information.TabIndex = 1;
-            this.lb_information.Text = "Make sure \'Num Lock\' is disabled and Maplestory client \nis in focus for auto rune" +
-                                        " to work correctly.\n\nIt may take up to 5 minutes to deactivate session if you \ncl" +
-                                        "ose without manually logging out";
+            this.lb_information.Text = resources.GetString("lb_information.Text");
+            this.lb_information.Click += new System.EventHandler(this.lb_information_Click);
             // 
             // label3
             // 
@@ -459,6 +458,17 @@ namespace RuneSolverUI
             this.label3.TabIndex = 1;
             this.label3.Text = "RuneSolver";
             // 
+            // lb_contact
+            // 
+            this.lb_contact.AutoSize = true;
+            this.lb_contact.BackColor = System.Drawing.Color.Transparent;
+            this.lb_contact.ForeColor = System.Drawing.Color.Black;
+            this.lb_contact.Location = new System.Drawing.Point(12, 419);
+            this.lb_contact.Name = "lb_contact";
+            this.lb_contact.Size = new System.Drawing.Size(272, 15);
+            this.lb_contact.TabIndex = 2;
+            this.lb_contact.Text = "Discord Psyren#7724 for any inquiries or questions";
+            // 
             // RuneSolverApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -466,6 +476,7 @@ namespace RuneSolverUI
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(590, 443);
+            this.Controls.Add(this.lb_contact);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lb_information);
             this.Controls.Add(this.panel1);
@@ -517,5 +528,6 @@ namespace RuneSolverUI
         private Button btn_toggleOnOff;
         private Label lb_information;
         private Label label3;
+        private Label lb_contact;
     }
 }
