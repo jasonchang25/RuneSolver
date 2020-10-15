@@ -57,7 +57,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lb_unstick.ToolTip" xml:space="preserve">
+    <value>Depending on the map your character may get stuck on a ladder or rope. 
+Although the macro does auto fix eventually to optimise farming rates we can manually jump off at a more frequent rate. 
+NOTE: You may get better rates on certain maps without this feature on</value>
+  </data>
   <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERET

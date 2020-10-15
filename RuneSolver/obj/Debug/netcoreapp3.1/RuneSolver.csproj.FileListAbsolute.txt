@@ -15,3 +15,4 @@ C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSo
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.dll
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.pdb
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.genruntimeconfig.cache
+C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.csprojAssemblyReference.cache
