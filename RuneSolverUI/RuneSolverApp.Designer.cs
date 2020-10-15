@@ -34,6 +34,7 @@ namespace RuneSolverUI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RuneSolverApp));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_login = new System.Windows.Forms.Button();
             this.lb_expiry = new System.Windows.Forms.Label();
             this.lb_expiryDate = new System.Windows.Forms.Label();
             this.lb_Status = new System.Windows.Forms.Label();
@@ -43,6 +44,9 @@ namespace RuneSolverUI
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lb_username = new System.Windows.Forms.Label();
             this.grp_Settings = new System.Windows.Forms.GroupBox();
+            this.cb_enableUnstickCharacter = new System.Windows.Forms.CheckBox();
+            this.ddl_jumpKey = new System.Windows.Forms.ComboBox();
+            this.lb_jumpKey = new System.Windows.Forms.Label();
             this.lb_unstick = new System.Windows.Forms.Label();
             this.cb_antiDeathLoop = new System.Windows.Forms.CheckBox();
             this.ddl_potionHakuKey = new System.Windows.Forms.ComboBox();
@@ -54,13 +58,11 @@ namespace RuneSolverUI
             this.lb_eliteBox = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_toggleOnOff = new System.Windows.Forms.Button();
             this.tt_antiDeathLoop = new System.Windows.Forms.ToolTip(this.components);
             this.tt_unstickCharacter = new System.Windows.Forms.ToolTip(this.components);
-            this.lb_jumpKey = new System.Windows.Forms.Label();
-            this.ddl_jumpKey = new System.Windows.Forms.ComboBox();
-            this.cb_enableUnstickCharacter = new System.Windows.Forms.CheckBox();
-            this.btn_login = new System.Windows.Forms.Button();
-            this.btn_toggleOnOff = new System.Windows.Forms.Button();
+            this.lb_information = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.grp_Settings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -86,6 +88,15 @@ namespace RuneSolverUI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter_1);
+            // 
+            // btn_login
+            // 
+            this.btn_login.Location = new System.Drawing.Point(9, 106);
+            this.btn_login.Name = "btn_login";
+            this.btn_login.Size = new System.Drawing.Size(206, 23);
+            this.btn_login.TabIndex = 4;
+            this.btn_login.Text = "Login";
+            this.btn_login.UseVisualStyleBackColor = true;
             // 
             // lb_expiry
             // 
@@ -188,6 +199,59 @@ namespace RuneSolverUI
             this.grp_Settings.TabIndex = 5;
             this.grp_Settings.TabStop = false;
             this.grp_Settings.Text = "Extra Features";
+            // 
+            // cb_enableUnstickCharacter
+            // 
+            this.cb_enableUnstickCharacter.AutoSize = true;
+            this.cb_enableUnstickCharacter.BackColor = System.Drawing.Color.Transparent;
+            this.cb_enableUnstickCharacter.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cb_enableUnstickCharacter.Location = new System.Drawing.Point(6, 230);
+            this.cb_enableUnstickCharacter.Name = "cb_enableUnstickCharacter";
+            this.cb_enableUnstickCharacter.Size = new System.Drawing.Size(163, 19);
+            this.cb_enableUnstickCharacter.TabIndex = 3;
+            this.cb_enableUnstickCharacter.Text = "Enable Unstick Character :";
+            this.cb_enableUnstickCharacter.UseVisualStyleBackColor = false;
+            // 
+            // ddl_jumpKey
+            // 
+            this.ddl_jumpKey.FormattingEnabled = true;
+            this.ddl_jumpKey.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "F2",
+            "F3",
+            "F4",
+            "F5",
+            "F6",
+            "F7",
+            "F8",
+            "F9",
+            "F10",
+            "F11",
+            "F12",
+            "alt"});
+            this.ddl_jumpKey.Location = new System.Drawing.Point(109, 201);
+            this.ddl_jumpKey.Name = "ddl_jumpKey";
+            this.ddl_jumpKey.Size = new System.Drawing.Size(97, 23);
+            this.ddl_jumpKey.TabIndex = 2;
+            // 
+            // lb_jumpKey
+            // 
+            this.lb_jumpKey.AutoSize = true;
+            this.lb_jumpKey.BackColor = System.Drawing.Color.Transparent;
+            this.lb_jumpKey.Location = new System.Drawing.Point(6, 204);
+            this.lb_jumpKey.Name = "lb_jumpKey";
+            this.lb_jumpKey.Size = new System.Drawing.Size(64, 15);
+            this.lb_jumpKey.TabIndex = 1;
+            this.lb_jumpKey.Text = "Jump Key :";
             // 
             // lb_unstick
             // 
@@ -351,6 +415,15 @@ namespace RuneSolverUI
             this.panel1.Size = new System.Drawing.Size(236, 449);
             this.panel1.TabIndex = 0;
             // 
+            // btn_toggleOnOff
+            // 
+            this.btn_toggleOnOff.Location = new System.Drawing.Point(3, 403);
+            this.btn_toggleOnOff.Name = "btn_toggleOnOff";
+            this.btn_toggleOnOff.Size = new System.Drawing.Size(222, 40);
+            this.btn_toggleOnOff.TabIndex = 6;
+            this.btn_toggleOnOff.Text = "Start";
+            this.btn_toggleOnOff.UseVisualStyleBackColor = true;
+            // 
             // tt_antiDeathLoop
             // 
             this.tt_antiDeathLoop.IsBalloon = true;
@@ -363,76 +436,28 @@ namespace RuneSolverUI
             this.tt_unstickCharacter.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.tt_unstickCharacter.ToolTipTitle = "Unstick Character Explaination";
             // 
-            // lb_jumpKey
+            // lb_information
             // 
-            this.lb_jumpKey.AutoSize = true;
-            this.lb_jumpKey.BackColor = System.Drawing.Color.Transparent;
-            this.lb_jumpKey.Location = new System.Drawing.Point(6, 204);
-            this.lb_jumpKey.Name = "lb_jumpKey";
-            this.lb_jumpKey.Size = new System.Drawing.Size(64, 15);
-            this.lb_jumpKey.TabIndex = 1;
-            this.lb_jumpKey.Text = "Jump Key :";
+            this.lb_information.AutoSize = true;
+            this.lb_information.BackColor = System.Drawing.Color.Transparent;
+            this.lb_information.Location = new System.Drawing.Point(12, 45);
+            this.lb_information.Name = "lb_information";
+            this.lb_information.Size = new System.Drawing.Size(303, 60);
+            this.lb_information.TabIndex = 1;
+            this.lb_information.Text = "Make sure \'Num Lock\' is disabled and Maplestory client \nis in focus for auto rune" +
+                                        " to work correctly.\n\nIt may take up to 5 minutes to deactivate session if you \ncl" +
+                                        "ose without manually logging out";
             // 
-            // ddl_jumpKey
+            // label3
             // 
-            this.ddl_jumpKey.FormattingEnabled = true;
-            this.ddl_jumpKey.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "0",
-            "F2",
-            "F3",
-            "F4",
-            "F5",
-            "F6",
-            "F7",
-            "F8",
-            "F9",
-            "F10",
-            "F11",
-            "F12",
-            "alt"});
-            this.ddl_jumpKey.Location = new System.Drawing.Point(109, 201);
-            this.ddl_jumpKey.Name = "ddl_jumpKey";
-            this.ddl_jumpKey.Size = new System.Drawing.Size(97, 23);
-            this.ddl_jumpKey.TabIndex = 2;
-            // 
-            // cb_enableUnstickCharacter
-            // 
-            this.cb_enableUnstickCharacter.AutoSize = true;
-            this.cb_enableUnstickCharacter.BackColor = System.Drawing.Color.Transparent;
-            this.cb_enableUnstickCharacter.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cb_enableUnstickCharacter.Location = new System.Drawing.Point(6, 230);
-            this.cb_enableUnstickCharacter.Name = "cb_enableUnstickCharacter";
-            this.cb_enableUnstickCharacter.Size = new System.Drawing.Size(163, 19);
-            this.cb_enableUnstickCharacter.TabIndex = 3;
-            this.cb_enableUnstickCharacter.Text = "Enable Unstick Character :";
-            this.cb_enableUnstickCharacter.UseVisualStyleBackColor = false;
-            // 
-            // btn_login
-            // 
-            this.btn_login.Location = new System.Drawing.Point(9, 106);
-            this.btn_login.Name = "btn_login";
-            this.btn_login.Size = new System.Drawing.Size(206, 23);
-            this.btn_login.TabIndex = 4;
-            this.btn_login.Text = "Login";
-            this.btn_login.UseVisualStyleBackColor = true;
-            // 
-            // btn_toggleOnOff
-            // 
-            this.btn_toggleOnOff.Location = new System.Drawing.Point(3, 403);
-            this.btn_toggleOnOff.Name = "btn_toggleOnOff";
-            this.btn_toggleOnOff.Size = new System.Drawing.Size(222, 40);
-            this.btn_toggleOnOff.TabIndex = 6;
-            this.btn_toggleOnOff.Text = "Start";
-            this.btn_toggleOnOff.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(12, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(144, 32);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "RuneSolver";
             // 
             // RuneSolverApp
             // 
@@ -441,10 +466,13 @@ namespace RuneSolverUI
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(590, 443);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lb_information);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RuneSolverApp";
-            this.Text = "Form1";
+            this.Text = "RuneSolver";
             this.Load += new System.EventHandler(this.RuneSolverApp_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -453,6 +481,7 @@ namespace RuneSolverUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -486,5 +515,7 @@ namespace RuneSolverUI
         private Label lb_jumpKey;
         private Button btn_login;
         private Button btn_toggleOnOff;
+        private Label lb_information;
+        private Label label3;
     }
 }
