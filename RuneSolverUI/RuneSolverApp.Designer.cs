@@ -33,14 +33,15 @@ namespace RuneSolverUI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RuneSolverApp));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cb_saveLogin = new System.Windows.Forms.CheckBox();
             this.btn_login = new System.Windows.Forms.Button();
             this.lb_expiry = new System.Windows.Forms.Label();
             this.lb_expiryDate = new System.Windows.Forms.Label();
             this.lb_Status = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tb_password = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_username = new System.Windows.Forms.TextBox();
             this.lb_username = new System.Windows.Forms.Label();
             this.grp_Settings = new System.Windows.Forms.GroupBox();
             this.cb_enableUnstickCharacter = new System.Windows.Forms.CheckBox();
@@ -72,37 +73,51 @@ namespace RuneSolverUI
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.groupBox1.Controls.Add(this.cb_saveLogin);
             this.groupBox1.Controls.Add(this.btn_login);
             this.groupBox1.Controls.Add(this.lb_expiry);
             this.groupBox1.Controls.Add(this.lb_expiryDate);
             this.groupBox1.Controls.Add(this.lb_Status);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.tb_password);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.tb_username);
             this.groupBox1.Controls.Add(this.lb_username);
-            this.groupBox1.Location = new System.Drawing.Point(3, 7);
+            this.groupBox1.Location = new System.Drawing.Point(3, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(222, 135);
+            this.groupBox1.Size = new System.Drawing.Size(222, 159);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter_1);
             // 
+            // cb_saveLogin
+            // 
+            this.cb_saveLogin.AutoSize = true;
+            this.cb_saveLogin.BackColor = System.Drawing.Color.Transparent;
+            this.cb_saveLogin.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cb_saveLogin.Location = new System.Drawing.Point(81, 71);
+            this.cb_saveLogin.Name = "cb_saveLogin";
+            this.cb_saveLogin.Size = new System.Drawing.Size(117, 19);
+            this.cb_saveLogin.TabIndex = 3;
+            this.cb_saveLogin.Text = "Remember Login";
+            this.cb_saveLogin.UseVisualStyleBackColor = false;
+            // 
             // btn_login
             // 
-            this.btn_login.Location = new System.Drawing.Point(9, 106);
+            this.btn_login.Location = new System.Drawing.Point(10, 131);
             this.btn_login.Name = "btn_login";
             this.btn_login.Size = new System.Drawing.Size(206, 23);
-            this.btn_login.TabIndex = 4;
+            this.btn_login.TabIndex = 7;
             this.btn_login.Text = "Login";
             this.btn_login.UseVisualStyleBackColor = true;
+            this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
             // 
             // lb_expiry
             // 
             this.lb_expiry.AutoSize = true;
             this.lb_expiry.BackColor = System.Drawing.Color.Transparent;
-            this.lb_expiry.Location = new System.Drawing.Point(27, 88);
+            this.lb_expiry.Location = new System.Drawing.Point(27, 111);
             this.lb_expiry.Name = "lb_expiry";
             this.lb_expiry.Size = new System.Drawing.Size(45, 15);
             this.lb_expiry.TabIndex = 2;
@@ -112,7 +127,7 @@ namespace RuneSolverUI
             // 
             this.lb_expiryDate.AutoSize = true;
             this.lb_expiryDate.BackColor = System.Drawing.Color.Transparent;
-            this.lb_expiryDate.Location = new System.Drawing.Point(78, 88);
+            this.lb_expiryDate.Location = new System.Drawing.Point(78, 111);
             this.lb_expiryDate.Name = "lb_expiryDate";
             this.lb_expiryDate.Size = new System.Drawing.Size(12, 15);
             this.lb_expiryDate.TabIndex = 2;
@@ -123,7 +138,7 @@ namespace RuneSolverUI
             this.lb_Status.AutoSize = true;
             this.lb_Status.BackColor = System.Drawing.Color.Transparent;
             this.lb_Status.ForeColor = System.Drawing.Color.Red;
-            this.lb_Status.Location = new System.Drawing.Point(78, 69);
+            this.lb_Status.Location = new System.Drawing.Point(78, 93);
             this.lb_Status.Name = "lb_Status";
             this.lb_Status.Size = new System.Drawing.Size(88, 15);
             this.lb_Status.TabIndex = 3;
@@ -134,19 +149,19 @@ namespace RuneSolverUI
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(27, 68);
+            this.label2.Location = new System.Drawing.Point(27, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "Status :";
             // 
-            // textBox2
+            // tb_password
             // 
-            this.textBox2.Location = new System.Drawing.Point(78, 42);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(120, 23);
-            this.textBox2.TabIndex = 1;
+            this.tb_password.Location = new System.Drawing.Point(78, 42);
+            this.tb_password.Name = "tb_password";
+            this.tb_password.PasswordChar = '*';
+            this.tb_password.Size = new System.Drawing.Size(120, 23);
+            this.tb_password.TabIndex = 2;
             // 
             // label1
             // 
@@ -159,12 +174,12 @@ namespace RuneSolverUI
             this.label1.Text = "Password :";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // textBox1
+            // tb_username
             // 
-            this.textBox1.Location = new System.Drawing.Point(78, 16);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(120, 23);
-            this.textBox1.TabIndex = 2;
+            this.tb_username.Location = new System.Drawing.Point(78, 16);
+            this.tb_username.Name = "tb_username";
+            this.tb_username.Size = new System.Drawing.Size(120, 23);
+            this.tb_username.TabIndex = 1;
             // 
             // lb_username
             // 
@@ -193,9 +208,9 @@ namespace RuneSolverUI
             this.grp_Settings.Controls.Add(this.lb_eliteBoxKey);
             this.grp_Settings.Controls.Add(this.lb_eliteBox);
             this.grp_Settings.Controls.Add(this.pictureBox1);
-            this.grp_Settings.Location = new System.Drawing.Point(3, 148);
+            this.grp_Settings.Location = new System.Drawing.Point(3, 173);
             this.grp_Settings.Name = "grp_Settings";
-            this.grp_Settings.Size = new System.Drawing.Size(222, 254);
+            this.grp_Settings.Size = new System.Drawing.Size(222, 242);
             this.grp_Settings.TabIndex = 5;
             this.grp_Settings.TabStop = false;
             this.grp_Settings.Text = "Extra Features";
@@ -205,15 +220,17 @@ namespace RuneSolverUI
             this.cb_enableUnstickCharacter.AutoSize = true;
             this.cb_enableUnstickCharacter.BackColor = System.Drawing.Color.Transparent;
             this.cb_enableUnstickCharacter.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cb_enableUnstickCharacter.Location = new System.Drawing.Point(6, 230);
+            this.cb_enableUnstickCharacter.Location = new System.Drawing.Point(6, 218);
             this.cb_enableUnstickCharacter.Name = "cb_enableUnstickCharacter";
             this.cb_enableUnstickCharacter.Size = new System.Drawing.Size(163, 19);
-            this.cb_enableUnstickCharacter.TabIndex = 3;
+            this.cb_enableUnstickCharacter.TabIndex = 9;
             this.cb_enableUnstickCharacter.Text = "Enable Unstick Character :";
             this.cb_enableUnstickCharacter.UseVisualStyleBackColor = false;
             // 
             // ddl_jumpKey
             // 
+            this.ddl_jumpKey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddl_jumpKey.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ddl_jumpKey.FormattingEnabled = true;
             this.ddl_jumpKey.Items.AddRange(new object[] {
             "1",
@@ -238,16 +255,16 @@ namespace RuneSolverUI
             "F11",
             "F12",
             "alt"});
-            this.ddl_jumpKey.Location = new System.Drawing.Point(109, 201);
+            this.ddl_jumpKey.Location = new System.Drawing.Point(109, 189);
             this.ddl_jumpKey.Name = "ddl_jumpKey";
             this.ddl_jumpKey.Size = new System.Drawing.Size(97, 23);
-            this.ddl_jumpKey.TabIndex = 2;
+            this.ddl_jumpKey.TabIndex = 8;
             // 
             // lb_jumpKey
             // 
             this.lb_jumpKey.AutoSize = true;
             this.lb_jumpKey.BackColor = System.Drawing.Color.Transparent;
-            this.lb_jumpKey.Location = new System.Drawing.Point(6, 204);
+            this.lb_jumpKey.Location = new System.Drawing.Point(6, 192);
             this.lb_jumpKey.Name = "lb_jumpKey";
             this.lb_jumpKey.Size = new System.Drawing.Size(64, 15);
             this.lb_jumpKey.TabIndex = 1;
@@ -258,7 +275,7 @@ namespace RuneSolverUI
             this.lb_unstick.AutoSize = true;
             this.lb_unstick.BackColor = System.Drawing.Color.Transparent;
             this.lb_unstick.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_unstick.Location = new System.Drawing.Point(6, 183);
+            this.lb_unstick.Location = new System.Drawing.Point(6, 171);
             this.lb_unstick.Name = "lb_unstick";
             this.lb_unstick.Size = new System.Drawing.Size(106, 15);
             this.lb_unstick.TabIndex = 1;
@@ -270,7 +287,7 @@ namespace RuneSolverUI
             this.cb_antiDeathLoop.AutoSize = true;
             this.cb_antiDeathLoop.BackColor = System.Drawing.Color.Transparent;
             this.cb_antiDeathLoop.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cb_antiDeathLoop.Location = new System.Drawing.Point(6, 151);
+            this.cb_antiDeathLoop.Location = new System.Drawing.Point(6, 144);
             this.cb_antiDeathLoop.Name = "cb_antiDeathLoop";
             this.cb_antiDeathLoop.Size = new System.Drawing.Size(156, 19);
             this.cb_antiDeathLoop.TabIndex = 3;
@@ -279,6 +296,8 @@ namespace RuneSolverUI
             // 
             // ddl_potionHakuKey
             // 
+            this.ddl_potionHakuKey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddl_potionHakuKey.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ddl_potionHakuKey.FormattingEnabled = true;
             this.ddl_potionHakuKey.Items.AddRange(new object[] {
             "1",
@@ -302,7 +321,7 @@ namespace RuneSolverUI
             "F10",
             "F11",
             "F12"});
-            this.ddl_potionHakuKey.Location = new System.Drawing.Point(109, 122);
+            this.ddl_potionHakuKey.Location = new System.Drawing.Point(109, 115);
             this.ddl_potionHakuKey.Name = "ddl_potionHakuKey";
             this.ddl_potionHakuKey.Size = new System.Drawing.Size(97, 23);
             this.ddl_potionHakuKey.TabIndex = 2;
@@ -311,7 +330,7 @@ namespace RuneSolverUI
             // 
             this.lb_potionHakuKey.AutoSize = true;
             this.lb_potionHakuKey.BackColor = System.Drawing.Color.Transparent;
-            this.lb_potionHakuKey.Location = new System.Drawing.Point(6, 125);
+            this.lb_potionHakuKey.Location = new System.Drawing.Point(6, 118);
             this.lb_potionHakuKey.Name = "lb_potionHakuKey";
             this.lb_potionHakuKey.Size = new System.Drawing.Size(103, 15);
             this.lb_potionHakuKey.TabIndex = 1;
@@ -322,7 +341,7 @@ namespace RuneSolverUI
             this.lb_antiDeathLoop.AutoSize = true;
             this.lb_antiDeathLoop.BackColor = System.Drawing.Color.Transparent;
             this.lb_antiDeathLoop.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_antiDeathLoop.Location = new System.Drawing.Point(6, 101);
+            this.lb_antiDeathLoop.Location = new System.Drawing.Point(6, 94);
             this.lb_antiDeathLoop.Name = "lb_antiDeathLoop";
             this.lb_antiDeathLoop.Size = new System.Drawing.Size(97, 15);
             this.lb_antiDeathLoop.TabIndex = 1;
@@ -345,6 +364,8 @@ namespace RuneSolverUI
             // 
             // ddl_eliteBoxKey
             // 
+            this.ddl_eliteBoxKey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddl_eliteBoxKey.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ddl_eliteBoxKey.FormattingEnabled = true;
             this.ddl_eliteBoxKey.Items.AddRange(new object[] {
             "1",
@@ -410,19 +431,20 @@ namespace RuneSolverUI
             this.panel1.Controls.Add(this.btn_toggleOnOff);
             this.panel1.Controls.Add(this.grp_Settings);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Location = new System.Drawing.Point(360, -4);
+            this.panel1.Location = new System.Drawing.Point(373, -4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(236, 449);
+            this.panel1.Size = new System.Drawing.Size(236, 464);
             this.panel1.TabIndex = 0;
             // 
             // btn_toggleOnOff
             // 
-            this.btn_toggleOnOff.Location = new System.Drawing.Point(3, 403);
+            this.btn_toggleOnOff.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(188)))), ((int)(((byte)(18)))));
+            this.btn_toggleOnOff.Location = new System.Drawing.Point(3, 419);
             this.btn_toggleOnOff.Name = "btn_toggleOnOff";
             this.btn_toggleOnOff.Size = new System.Drawing.Size(222, 40);
-            this.btn_toggleOnOff.TabIndex = 6;
+            this.btn_toggleOnOff.TabIndex = 10;
             this.btn_toggleOnOff.Text = "Start";
-            this.btn_toggleOnOff.UseVisualStyleBackColor = true;
+            this.btn_toggleOnOff.UseVisualStyleBackColor = false;
             // 
             // tt_antiDeathLoop
             // 
@@ -463,7 +485,7 @@ namespace RuneSolverUI
             this.lb_contact.AutoSize = true;
             this.lb_contact.BackColor = System.Drawing.Color.Transparent;
             this.lb_contact.ForeColor = System.Drawing.Color.Black;
-            this.lb_contact.Location = new System.Drawing.Point(12, 419);
+            this.lb_contact.Location = new System.Drawing.Point(12, 434);
             this.lb_contact.Name = "lb_contact";
             this.lb_contact.Size = new System.Drawing.Size(272, 15);
             this.lb_contact.TabIndex = 2;
@@ -475,13 +497,14 @@ namespace RuneSolverUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(590, 443);
+            this.ClientSize = new System.Drawing.Size(607, 459);
             this.Controls.Add(this.lb_contact);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lb_information);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "RuneSolverApp";
             this.Text = "RuneSolver";
             this.Load += new System.EventHandler(this.RuneSolverApp_Load);
@@ -503,7 +526,7 @@ namespace RuneSolverUI
         private Label label2;
         private TextBox textBox2;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox tb_username;
         private Label lb_username;
         private GroupBox grp_Settings;
         private Panel panel1;
@@ -529,5 +552,7 @@ namespace RuneSolverUI
         private Label lb_information;
         private Label label3;
         private Label lb_contact;
+        private TextBox tb_password;
+        private CheckBox cb_saveLogin;
     }
 }
