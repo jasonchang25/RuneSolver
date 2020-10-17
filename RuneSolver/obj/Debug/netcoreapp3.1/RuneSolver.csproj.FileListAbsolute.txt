@@ -1,7 +1,4 @@
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\bin\Debug\netcoreapp3.1\RuneSolver.exe
-C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.AssemblyInfoInputs.cache
-C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.AssemblyInfo.cs
-C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.csproj.CoreCompileInputs.cache
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\bin\Debug\netcoreapp3.1\RuneSolver.deps.json
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\bin\Debug\netcoreapp3.1\RuneSolver.runtimeconfig.json
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\bin\Debug\netcoreapp3.1\RuneSolver.runtimeconfig.dev.json
@@ -11,8 +8,11 @@ C:\Users\Jason\source\repos\RuneSolver\RuneSolver\bin\Debug\netcoreapp3.1\Micros
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\bin\Debug\netcoreapp3.1\Microsoft.Rest.ClientRuntime.dll
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\bin\Debug\netcoreapp3.1\Microsoft.Rest.ClientRuntime.Azure.dll
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.csprojAssemblyReference.cache
+C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.AssemblyInfoInputs.cache
+C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.AssemblyInfo.cs
+C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.csproj.CoreCompileInputs.cache
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.csproj.CopyComplete
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.dll
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.pdb
 C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.genruntimeconfig.cache
-C:\Users\Jason\source\repos\RuneSolver\RuneSolver\obj\Debug\netcoreapp3.1\RuneSolver.csprojAssemblyReference.cache

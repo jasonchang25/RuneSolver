@@ -23,6 +23,7 @@ namespace RuneSolverUI
         protected Users _user;
         protected Sessions _session;
         private BackgroundWorker _worker = null;
+        private LogWriter _logWriter;
         // Computer vision
         static protected Guid _projectId;
         static protected string _modelName;
@@ -95,36 +96,45 @@ namespace RuneSolverUI
             {
                 do
                 {
-                    if (_worker.CancellationPending)
-                        break;
+                    try
+                    {
+                        if (_worker.CancellationPending)
+                            break;
 
-                    if (timeTracker == 0)
-                    {
-                        _sessionRepository.ExtendSession(_session);
-                        timeTracker = 300000;
-                    }
-                    else if (timeTracker % 30000 == 0)
-                    {
-                        if (cb_antiDeathLoop.Checked) CastHeal();
-                    }
-                    else if (timeTracker % 5000 == 0)
-                    {
-                        if (cb_enableUnstickCharacter.Checked) UnstickCharacter();
-                    }
-                    else if (timeTracker % 150000 == 0)
-                    {
-                        if (cb_openEliteBox.Checked) OpenEliteBox();
-                    }
+                        if (timeTracker == 0)
+                        {
+                            _sessionRepository.ExtendSession(_session);
+                            timeTracker = 300000;
+                        }
+                        else if (timeTracker % 30000 == 0)
+                        {
+                            if (cb_antiDeathLoop.Checked) CastHeal();
+                        }
+                        else if (timeTracker % 5000 == 0)
+                        {
+                            if (cb_enableUnstickCharacter.Checked) UnstickCharacter();
+                        }
+                        else if (timeTracker % 150000 == 0)
+                        {
+                            if (cb_openEliteBox.Checked) OpenEliteBox();
+                        }
 
-                    if (File.Exists(runeImage))
-                    {
-                        var solution = GetSolution(predictionApi, runeImage);
-                        SolveRune(solution);
-                        File.Delete(runeImage);
+                        if (File.Exists(runeImage))
+                        {
+                            _logWriter.LogWrite("Rune Found, Solving Rune");
+                            var solution = GetSolution(predictionApi, runeImage);
+                            _logWriter.LogWrite(string.Join(",", solution.Select(s => s.TagName)));
+                            SolveRune(solution);
+                            _logWriter.LogWrite("Rune Solved");
+                            File.Delete(runeImage);
+                        }
+                        timeTracker -= 5000;
+                        Thread.Sleep(5000);
                     }
-                    timeTracker -= 5000;
-                    Thread.Sleep(5000);
-
+                    catch (Exception ex)
+                    {
+                        _logWriter.LogWrite(ex.Message);
+                    }                   
                 } while (true);
             });
             _worker.RunWorkerAsync();
@@ -132,81 +142,112 @@ namespace RuneSolverUI
 
         private void CastHeal()
         {
-            if (ddl_potionHakuKey.InvokeRequired)
+            try
             {
-                var d = new SafeCastHeal(CastHeal);
-                ddl_potionHakuKey.Invoke(d, new object[] {});
+                if (ddl_potionHakuKey.InvokeRequired)
+                {
+                    var d = new SafeCastHeal(CastHeal);
+                    ddl_potionHakuKey.Invoke(d, new object[] { });
+                }
+                else
+                {
+                    _logWriter.LogWrite("Triggering Anti Death Action");
+                    KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_potionHakuKey.SelectedItem.ToString())), false, KeyInput.InputType.Keyboard);
+                    Thread.Sleep(500);
+                    KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_potionHakuKey.SelectedItem.ToString())), true, KeyInput.InputType.Keyboard);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_potionHakuKey.SelectedItem.ToString())), false, KeyInput.InputType.Keyboard);
-                Thread.Sleep(500);
-                KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_potionHakuKey.SelectedItem.ToString())), true, KeyInput.InputType.Keyboard);
-            }            
+                _logWriter.LogWrite(ex.Message);
+            }                        
         }
 
         private void UnstickCharacter()
         {
-            if (ddl_jumpKey.InvokeRequired)
+            try
             {
-                var d = new SafeUnstickCharacter(UnstickCharacter);
-                ddl_jumpKey.Invoke(d, new object[] { });
+                if (ddl_jumpKey.InvokeRequired)
+                {
+                    var d = new SafeUnstickCharacter(UnstickCharacter);
+                    ddl_jumpKey.Invoke(d, new object[] { });
+                }
+                else
+                {
+                    _logWriter.LogWrite("Unsticking Character");
+                    KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, false, KeyInput.InputType.Keyboard);
+                    Thread.Sleep(250);
+                    KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_jumpKey.SelectedItem.ToString())), false, KeyInput.InputType.Keyboard);
+                    Thread.Sleep(500);
+                    KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, true, KeyInput.InputType.Keyboard);
+                    KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_jumpKey.SelectedItem.ToString())), true, KeyInput.InputType.Keyboard);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, false, KeyInput.InputType.Keyboard);
-                Thread.Sleep(250);
-                KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_jumpKey.SelectedItem.ToString())), false, KeyInput.InputType.Keyboard);
-                Thread.Sleep(500);
-                KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, true, KeyInput.InputType.Keyboard);
-                KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_jumpKey.SelectedItem.ToString())), true, KeyInput.InputType.Keyboard);
-            }            
+                _logWriter.LogWrite(ex.Message);
+            }                        
         }
 
         private void OpenEliteBox()
         {
-            if (ddl_eliteBoxKey.InvokeRequired)
+            try
             {
-                var d = new SafeOpenEliteBox(OpenEliteBox);
-                ddl_eliteBoxKey.Invoke(d, new object[] { });
-            }
-            else
-            {
-                for (var i = 0; i < 4; i++)
+                if (ddl_eliteBoxKey.InvokeRequired)
                 {
-                    KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_eliteBoxKey.SelectedItem.ToString())), false, KeyInput.InputType.Keyboard);
-                    Thread.Sleep(250);
+                    var d = new SafeOpenEliteBox(OpenEliteBox);
+                    ddl_eliteBoxKey.Invoke(d, new object[] { });
                 }
-            }            
+                else
+                {
+                    _logWriter.LogWrite("Opening Elite Box");
+                    for (var i = 0; i < 4; i++)
+                    {
+                        KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_eliteBoxKey.SelectedItem.ToString())), false, KeyInput.InputType.Keyboard);
+                        Thread.Sleep(250);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logWriter.LogWrite(ex.Message);
+            }                 
         }
 
         private void SolveRune(List<PredictionModel> solution)
         {
-            foreach (var key in solution)
+            try
             {
-                switch (key.TagName)
+                foreach (var key in solution)
                 {
-                    case "left":
-                        KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, false, KeyInput.InputType.Keyboard);
-                        break;
-                    case "right":
-                        KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_RIGHTARROW, false, KeyInput.InputType.Keyboard);
-                        break;
-                    case "down":
-                        KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_DOWNARROW, false, KeyInput.InputType.Keyboard);
-                        break;
-                    case "up":
-                        KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_UPARROW, false, KeyInput.InputType.Keyboard);
-                        break;
-                    default:
-                        break;
+                    switch (key.TagName)
+                    {
+                        case "left":
+                            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, false, KeyInput.InputType.Keyboard);
+                            break;
+                        case "right":
+                            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_RIGHTARROW, false, KeyInput.InputType.Keyboard);
+                            break;
+                        case "down":
+                            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_DOWNARROW, false, KeyInput.InputType.Keyboard);
+                            break;
+                        case "up":
+                            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_UPARROW, false, KeyInput.InputType.Keyboard);
+                            break;
+                        default:
+                            break;
+                    }
+                    Thread.Sleep(500);
                 }
-                Thread.Sleep(500);
+                KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, true, KeyInput.InputType.Keyboard);
+                KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_RIGHTARROW, true, KeyInput.InputType.Keyboard);
+                KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_DOWNARROW, true, KeyInput.InputType.Keyboard);
+                KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_UPARROW, true, KeyInput.InputType.Keyboard);
             }
-            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, true, KeyInput.InputType.Keyboard);
-            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_RIGHTARROW, true, KeyInput.InputType.Keyboard);
-            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_DOWNARROW, true, KeyInput.InputType.Keyboard);
-            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_UPARROW, true, KeyInput.InputType.Keyboard);
+            catch (Exception ex)
+            {
+                _logWriter.LogWrite(ex.Message);
+            }            
         }
 
         private CustomVisionPredictionClient AuthenticatePrediction(string endpoint, string predictionKey)
@@ -222,13 +263,20 @@ namespace RuneSolverUI
         private List<PredictionModel> GetSolution(CustomVisionPredictionClient predictionApi, string imageFile)
         {
             // Make a prediction against the new project
-            Console.WriteLine("Making a prediction:");
-            using (var stream = File.OpenRead(imageFile))
+            try
             {
-                var result = predictionApi.DetectImage(_projectId, _modelName, stream);
-                var solution = result.Predictions.Take(4).OrderBy(c => c.BoundingBox.Left).ToList();
-                return solution;
+                using (var stream = File.OpenRead(imageFile))
+                {
+                    var result = predictionApi.DetectImage(_projectId, _modelName, stream);
+                    var solution = result.Predictions.Take(4).OrderBy(c => c.BoundingBox.Left).ToList();
+                    return solution;
+                }
             }
+            catch (Exception ex)
+            {
+                _logWriter.LogWrite(ex.Message);
+                return new List<PredictionModel>();
+            }            
         }
 
         // Event Listener Methods
