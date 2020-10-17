@@ -18,10 +18,7 @@ namespace RuneSolverUI
 
         public RuneSolverApp()
         {
-            InitializeComponent();
-            _userRepository = new UserRepository();
-            _sessionRepository = new SessionRepository();
-            checkLoginStatus();
+            InitializeComponent();            
         }
 
         // Helper Methods
@@ -55,36 +52,28 @@ namespace RuneSolverUI
             }
         }
 
+        private void LoadSettings()
+        {
+            tb_username.Text = Properties.Settings.Default.Username;
+            tb_password.Text = Properties.Settings.Default.Password;
+            cb_saveLogin.Checked = Properties.Settings.Default.RememberLogin;
+            ddl_eliteBoxKey.SelectedItem = Properties.Settings.Default.EliteBoxKey;
+            cb_openEliteBox.Checked = Properties.Settings.Default.EliteBoxActivated;
+            ddl_potionHakuKey.SelectedItem = Properties.Settings.Default.AntiDeathKey;
+            cb_antiDeathLoop.Checked = Properties.Settings.Default.AntiDeathActivated;
+            ddl_jumpKey.SelectedItem = Properties.Settings.Default.JumpKey;
+            cb_enableUnstickCharacter.Checked = Properties.Settings.Default.UnstickCharacterActivated;
+        }
 
         // Event Listener Methods
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         private void RuneSolverApp_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_information_Click(object sender, EventArgs e)
-        {
-
+            _userRepository = new UserRepository();
+            _sessionRepository = new SessionRepository();
+            _sessionId = Guid.NewGuid().ToString();
+            LoadSettings();
+            checkLoginStatus();
         }
 
         private void btn_login_Click(object sender, EventArgs e)
@@ -103,14 +92,85 @@ namespace RuneSolverUI
             }
             else
             {
-                _sessionId = Guid.NewGuid().ToString();
-                _session = _sessionRepository.validateSession(_user, _sessionId, _session);
+                _user = null;
+                checkLoginStatus();
+            }
+        }
+
+        private void btn_toggleOnOff_Click(object sender, EventArgs e)
+        {
+            if (!_isRunning)
+            {
+                _session = _sessionRepository.ValidateSession(_user, _sessionId, _session);
                 if (_session == null)
                 {
                     MessageBox.Show("Maximum session limit reached. Please log out of another session and try again", " Error! ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                //checkLoginStatus();
+                else
+                {
+                    _isRunning = true;
+                    btn_toggleOnOff.BackColor = Color.Red;
+                    btn_toggleOnOff.Text = "Stop";
+                    btn_login.Enabled = false;
+                }
             }
+            else
+            {
+                _isRunning = false;
+                btn_toggleOnOff.BackColor = Color.FromArgb(10, 188, 18);
+                btn_toggleOnOff.Text = "Start";
+                btn_login.Enabled = true;
+            }            
+        }
+
+        private void cb_saveLogin_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.RememberLogin = cb_saveLogin.Checked;
+            if (cb_saveLogin.Checked)
+            {
+                Properties.Settings.Default.Username = tb_username.Text;
+                Properties.Settings.Default.Password = tb_password.Text;
+            }
+            else
+            {
+                Properties.Settings.Default.Username = Properties.Settings.Default.Password = "";
+            }
+            Properties.Settings.Default.Save();
+        }
+
+        private void ddl_eliteBoxKey_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.EliteBoxKey = ddl_eliteBoxKey.SelectedItem.ToString();
+            Properties.Settings.Default.Save();
+        }
+
+        private void cb_openEliteBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.EliteBoxActivated = cb_openEliteBox.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void ddl_potionHakuKey_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AntiDeathKey = ddl_potionHakuKey.SelectedItem.ToString();
+            Properties.Settings.Default.Save();
+        }
+        private void cb_antiDeathLoop_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AntiDeathActivated = cb_antiDeathLoop.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void ddl_jumpKey_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.JumpKey = ddl_jumpKey.SelectedItem.ToString();
+            Properties.Settings.Default.Save();
+        }
+
+        private void cb_enableUnstickCharacter_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.UnstickCharacterActivated = cb_enableUnstickCharacter.Checked;
+            Properties.Settings.Default.Save();
         }
     }
 }

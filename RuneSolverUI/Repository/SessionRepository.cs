@@ -9,8 +9,8 @@ namespace RuneSolverUI.Repository
 {    
     interface ISessionRepository
     {
-
-        public Sessions validateSession(Users user, string guid, Sessions currentSession);
+        public Sessions ValidateSession(Users user, string guid, Sessions currentSession);
+        public void RemoveSession(Sessions currentSession);
     }
 
     public class SessionRepository : ISessionRepository
@@ -20,11 +20,11 @@ namespace RuneSolverUI.Repository
 
         }
 
-        public Sessions validateSession(Users user, string guid, Sessions currentSession)
+        public Sessions ValidateSession(Users user, string guid, Sessions currentSession)
         {
             using var context = new runesolverContext();
 
-            if (currentSession != null)
+            if (currentSession != null && context.Sessions.Find(currentSession.PkSessionId) != null)
             {
                 currentSession.Expiry = DateTime.UtcNow.AddMinutes(6);
                 context.SaveChanges();
@@ -48,6 +48,16 @@ namespace RuneSolverUI.Repository
                 context.SaveChanges();
                 return newSession;
             }           
+        }
+
+        public void RemoveSession(Sessions currentSession)
+        {
+            using var context = new runesolverContext();
+            if (currentSession != null && context.Sessions.Find(currentSession.PkSessionId) != null)
+            {
+                context.Sessions.Remove(currentSession);
+                context.SaveChanges();
+            }
         }
     }
 }

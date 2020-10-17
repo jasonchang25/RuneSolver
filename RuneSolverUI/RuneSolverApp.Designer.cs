@@ -89,7 +89,6 @@ namespace RuneSolverUI
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter_1);
             // 
             // cb_saveLogin
             // 
@@ -102,6 +101,7 @@ namespace RuneSolverUI
             this.cb_saveLogin.TabIndex = 3;
             this.cb_saveLogin.Text = "Remember Login";
             this.cb_saveLogin.UseVisualStyleBackColor = false;
+            this.cb_saveLogin.CheckedChanged += new System.EventHandler(this.cb_saveLogin_CheckedChanged);
             // 
             // btn_login
             // 
@@ -143,7 +143,6 @@ namespace RuneSolverUI
             this.lb_Status.Size = new System.Drawing.Size(88, 15);
             this.lb_Status.TabIndex = 3;
             this.lb_Status.Text = "Not Connected";
-            this.lb_Status.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -172,7 +171,6 @@ namespace RuneSolverUI
             this.label1.Size = new System.Drawing.Size(63, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "Password :";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // tb_username
             // 
@@ -190,7 +188,6 @@ namespace RuneSolverUI
             this.lb_username.Size = new System.Drawing.Size(66, 15);
             this.lb_username.TabIndex = 2;
             this.lb_username.Text = "Username :";
-            this.lb_username.Click += new System.EventHandler(this.label1_Click);
             // 
             // grp_Settings
             // 
@@ -226,6 +223,7 @@ namespace RuneSolverUI
             this.cb_enableUnstickCharacter.TabIndex = 9;
             this.cb_enableUnstickCharacter.Text = "Enable Unstick Character :";
             this.cb_enableUnstickCharacter.UseVisualStyleBackColor = false;
+            this.cb_enableUnstickCharacter.CheckedChanged += new System.EventHandler(this.cb_enableUnstickCharacter_CheckedChanged);
             // 
             // ddl_jumpKey
             // 
@@ -259,6 +257,7 @@ namespace RuneSolverUI
             this.ddl_jumpKey.Name = "ddl_jumpKey";
             this.ddl_jumpKey.Size = new System.Drawing.Size(97, 23);
             this.ddl_jumpKey.TabIndex = 8;
+            this.ddl_jumpKey.SelectedIndexChanged += new System.EventHandler(this.ddl_jumpKey_SelectedIndexChanged);
             // 
             // lb_jumpKey
             // 
@@ -293,6 +292,7 @@ namespace RuneSolverUI
             this.cb_antiDeathLoop.TabIndex = 3;
             this.cb_antiDeathLoop.Text = "Enable Anti Death Loop :";
             this.cb_antiDeathLoop.UseVisualStyleBackColor = false;
+            this.cb_antiDeathLoop.CheckedChanged += new System.EventHandler(this.cb_antiDeathLoop_CheckedChanged);
             // 
             // ddl_potionHakuKey
             // 
@@ -325,6 +325,7 @@ namespace RuneSolverUI
             this.ddl_potionHakuKey.Name = "ddl_potionHakuKey";
             this.ddl_potionHakuKey.Size = new System.Drawing.Size(97, 23);
             this.ddl_potionHakuKey.TabIndex = 2;
+            this.ddl_potionHakuKey.SelectedIndexChanged += new System.EventHandler(this.ddl_potionHakuKey_SelectedIndexChanged);
             // 
             // lb_potionHakuKey
             // 
@@ -361,6 +362,7 @@ namespace RuneSolverUI
             this.cb_openEliteBox.TabIndex = 3;
             this.cb_openEliteBox.Text = "Auto Open Elite Box :";
             this.cb_openEliteBox.UseVisualStyleBackColor = false;
+            this.cb_openEliteBox.CheckedChanged += new System.EventHandler(this.cb_openEliteBox_CheckedChanged);
             // 
             // ddl_eliteBoxKey
             // 
@@ -393,6 +395,7 @@ namespace RuneSolverUI
             this.ddl_eliteBoxKey.Name = "ddl_eliteBoxKey";
             this.ddl_eliteBoxKey.Size = new System.Drawing.Size(97, 23);
             this.ddl_eliteBoxKey.TabIndex = 2;
+            this.ddl_eliteBoxKey.SelectedIndexChanged += new System.EventHandler(this.ddl_eliteBoxKey_SelectedIndexChanged);
             // 
             // lb_eliteBoxKey
             // 
@@ -439,12 +442,15 @@ namespace RuneSolverUI
             // btn_toggleOnOff
             // 
             this.btn_toggleOnOff.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(188)))), ((int)(((byte)(18)))));
+            this.btn_toggleOnOff.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_toggleOnOff.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btn_toggleOnOff.Location = new System.Drawing.Point(3, 419);
             this.btn_toggleOnOff.Name = "btn_toggleOnOff";
             this.btn_toggleOnOff.Size = new System.Drawing.Size(222, 40);
             this.btn_toggleOnOff.TabIndex = 10;
             this.btn_toggleOnOff.Text = "Start";
             this.btn_toggleOnOff.UseVisualStyleBackColor = false;
+            this.btn_toggleOnOff.Click += new System.EventHandler(this.btn_toggleOnOff_Click);
             // 
             // tt_antiDeathLoop
             // 
@@ -467,7 +473,6 @@ namespace RuneSolverUI
             this.lb_information.Size = new System.Drawing.Size(344, 75);
             this.lb_information.TabIndex = 1;
             this.lb_information.Text = resources.GetString("lb_information.Text");
-            this.lb_information.Click += new System.EventHandler(this.lb_information_Click);
             // 
             // label3
             // 
