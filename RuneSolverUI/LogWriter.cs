@@ -16,7 +16,7 @@ namespace RuneSolverUI
         }
         public void LogWrite(string logMessage)
         {
-            m_exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            m_exePath = Directory.GetCurrentDirectory();
             try
             {
                 using (StreamWriter w = File.AppendText(m_exePath + "\\" + "log.txt"))

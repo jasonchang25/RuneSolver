@@ -112,7 +112,7 @@ namespace RuneSolverUI
                         {
                             if (cb_antiDeathLoop.Checked) CastHeal();
                         }
-                        else if (timeTracker % 5000 == 0)
+                        else if (timeTracker % 60000 == 0)
                         {
                             if (cb_enableUnstickCharacter.Checked) UnstickCharacter();
                         }
