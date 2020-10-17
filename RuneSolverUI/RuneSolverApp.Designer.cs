@@ -252,7 +252,7 @@ namespace RuneSolverUI
             "F10",
             "F11",
             "F12",
-            "alt"});
+            "ALT"});
             this.ddl_jumpKey.Location = new System.Drawing.Point(109, 189);
             this.ddl_jumpKey.Name = "ddl_jumpKey";
             this.ddl_jumpKey.Size = new System.Drawing.Size(97, 23);
