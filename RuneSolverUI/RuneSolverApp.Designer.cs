@@ -529,7 +529,6 @@ namespace RuneSolverUI
         private GroupBox groupBox1;
         private Label lb_Status;
         private Label label2;
-        private TextBox textBox2;
         private Label label1;
         private TextBox tb_username;
         private Label lb_username;
