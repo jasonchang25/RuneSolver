@@ -52,6 +52,7 @@ namespace RuneSolverUI
                 btn_login.Text = "Log Out";
                 if (_user.Expiry > DateTime.Now)
                 {
+                    lb_expiryDate.Text = _user.Expiry.ToShortDateString();
                     btn_toggleOnOff.Enabled = true;
                     btn_toggleOnOff.BackColor = Color.FromArgb(10, 188, 18);
                 }
