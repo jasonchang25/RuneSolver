@@ -28,6 +28,10 @@ namespace RuneSolverUI
         static protected string _modelName;
         static protected string _ENDPOINT;
         static protected string _predictionKey;
+        // Thread Safe
+        private delegate void SafeCastHeal();
+        private delegate void SafeOpenEliteBox();
+        private delegate void SafeUnstickCharacter();
         public RuneSolverApp()
         {
             InitializeComponent();            
@@ -103,7 +107,7 @@ namespace RuneSolverUI
                     {
                         if (cb_antiDeathLoop.Checked) CastHeal();
                     }
-                    else if (timeTracker % 60000 == 0)
+                    else if (timeTracker % 5000 == 0)
                     {
                         if (cb_enableUnstickCharacter.Checked) UnstickCharacter();
                     }
@@ -128,28 +132,52 @@ namespace RuneSolverUI
 
         private void CastHeal()
         {
-            KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_potionHakuKey.SelectedItem.ToString())), false, KeyInput.InputType.Keyboard);
-            Thread.Sleep(500);
-            KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_potionHakuKey.SelectedItem.ToString())), true, KeyInput.InputType.Keyboard);
+            if (ddl_potionHakuKey.InvokeRequired)
+            {
+                var d = new SafeCastHeal(CastHeal);
+                ddl_potionHakuKey.Invoke(d, new object[] {});
+            }
+            else
+            {
+                KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_potionHakuKey.SelectedItem.ToString())), false, KeyInput.InputType.Keyboard);
+                Thread.Sleep(500);
+                KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_potionHakuKey.SelectedItem.ToString())), true, KeyInput.InputType.Keyboard);
+            }            
         }
 
         private void UnstickCharacter()
         {
-            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, false, KeyInput.InputType.Keyboard);
-            Thread.Sleep(250);
-            KeyInput.SendKey((KeyInput.DirectXKeyStrokes) Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_jumpKey.SelectedItem.ToString())), false, KeyInput.InputType.Keyboard);
-            Thread.Sleep(500);
-            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, true, KeyInput.InputType.Keyboard);
-            KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_jumpKey.SelectedItem.ToString())), true, KeyInput.InputType.Keyboard);
+            if (ddl_jumpKey.InvokeRequired)
+            {
+                var d = new SafeUnstickCharacter(UnstickCharacter);
+                ddl_jumpKey.Invoke(d, new object[] { });
+            }
+            else
+            {
+                KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, false, KeyInput.InputType.Keyboard);
+                Thread.Sleep(250);
+                KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_jumpKey.SelectedItem.ToString())), false, KeyInput.InputType.Keyboard);
+                Thread.Sleep(500);
+                KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, true, KeyInput.InputType.Keyboard);
+                KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_jumpKey.SelectedItem.ToString())), true, KeyInput.InputType.Keyboard);
+            }            
         }
 
         private void OpenEliteBox()
         {
-            for (var i = 0; i < 4; i++)
+            if (ddl_eliteBoxKey.InvokeRequired)
             {
-                KeyInput.SendKey((KeyInput.DirectXKeyStrokes) Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_",ddl_eliteBoxKey.SelectedItem.ToString())), false, KeyInput.InputType.Keyboard);
-                Thread.Sleep(250);
+                var d = new SafeOpenEliteBox(OpenEliteBox);
+                ddl_eliteBoxKey.Invoke(d, new object[] { });
             }
+            else
+            {
+                for (var i = 0; i < 4; i++)
+                {
+                    KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_eliteBoxKey.SelectedItem.ToString())), false, KeyInput.InputType.Keyboard);
+                    Thread.Sleep(250);
+                }
+            }            
         }
 
         private void SolveRune(List<PredictionModel> solution)
