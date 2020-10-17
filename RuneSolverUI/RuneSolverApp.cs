@@ -108,15 +108,16 @@ namespace RuneSolverUI
                             _sessionRepository.ExtendSession(_session);
                             timeTracker = 300000;
                         }
-                        else if (timeTracker % 30000 == 0)
+
+                        if (timeTracker % 30000 == 0)
                         {
                             if (cb_antiDeathLoop.Checked) CastHeal();
                         }
-                        else if (timeTracker % 60000 == 0)
+                        if (timeTracker % 60000 == 0)
                         {
                             if (cb_enableUnstickCharacter.Checked) UnstickCharacter();
                         }
-                        else if (timeTracker % 150000 == 0)
+                        if (timeTracker % 150000 == 0)
                         {
                             if (cb_openEliteBox.Checked) OpenEliteBox();
                         }
