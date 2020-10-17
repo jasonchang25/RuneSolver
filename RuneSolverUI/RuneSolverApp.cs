@@ -48,7 +48,8 @@ namespace RuneSolverUI
                 btn_toggleOnOff.BackColor = Color.Gray;
                 lb_Status.Text = "Not Connected";
                 lb_Status.ForeColor = Color.Red;
-                btn_login.Text = "Login";                
+                btn_login.Text = "Login";
+                _logWriter.LogWrite("User signed out");
             }
             else
             {
@@ -60,12 +61,14 @@ namespace RuneSolverUI
                     lb_expiryDate.Text = _user.Expiry.ToShortDateString();
                     btn_toggleOnOff.Enabled = true;
                     btn_toggleOnOff.BackColor = Color.FromArgb(10, 188, 18);
+                    _logWriter.LogWrite("User login successful");
                 }
                 else
                 {
                     lb_expiryDate.Text = "Expired";
                     btn_toggleOnOff.Enabled = false;
                     btn_toggleOnOff.BackColor = Color.Gray;
+                    _logWriter.LogWrite("User login failed user license expired");
                 }
             }
         }
@@ -88,10 +91,9 @@ namespace RuneSolverUI
             CustomVisionPredictionClient predictionApi = AuthenticatePrediction(_ENDPOINT, _predictionKey);
             var path = Directory.GetCurrentDirectory();
             var runeImage = "2.png";
-            var timeTracker = 0;
+            var timeTracker = 300000;
             _worker = new BackgroundWorker();
-            _worker.WorkerSupportsCancellation = true;
-
+            _worker.WorkerSupportsCancellation = true;            
             _worker.DoWork += new DoWorkEventHandler((state, args) =>
             {
                 do
@@ -290,6 +292,7 @@ namespace RuneSolverUI
             _ENDPOINT = "https://runeclassifier-prediction.cognitiveservices.azure.com/";
             _predictionKey = "e587c896f1664f8dacb25ce70dde10d9";
             _modelName = "RuneSolver";
+            _logWriter = new LogWriter();
             LoadSettings();
             checkLoginStatus();
         }
@@ -323,6 +326,7 @@ namespace RuneSolverUI
                 _session = _sessionRepository.ValidateSession(_user, _sessionId, _session);
                 if (_session == null)
                 {
+                    _logWriter.LogWrite("Process failed. Maximum session limit reached.");
                     MessageBox.Show("Maximum session limit reached. Please log out of another session and try again", " Error! ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
@@ -331,6 +335,7 @@ namespace RuneSolverUI
                     btn_toggleOnOff.BackColor = Color.Red;
                     btn_toggleOnOff.Text = "Stop";
                     btn_login.Enabled = false;
+                    _logWriter.LogWrite("RuneSolver process started.");
                     Process();
                 }
             }
@@ -341,6 +346,7 @@ namespace RuneSolverUI
                 btn_toggleOnOff.BackColor = Color.FromArgb(10, 188, 18);
                 btn_toggleOnOff.Text = "Start";
                 btn_login.Enabled = true;
+                _logWriter.LogWrite("RuneSolver process stopped.");
             }            
         }
 

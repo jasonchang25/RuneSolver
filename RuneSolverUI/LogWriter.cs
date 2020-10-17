@@ -11,9 +11,8 @@ namespace RuneSolverUI
     public class LogWriter
     {
         private string m_exePath = string.Empty;
-        public LogWriter(string logMessage)
+        public LogWriter()
         {
-            LogWrite(logMessage);
         }
         public void LogWrite(string logMessage)
         {
@@ -34,12 +33,7 @@ namespace RuneSolverUI
         {
             try
             {
-                txtWriter.Write("\r\nLog Entry : ");
-                txtWriter.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
-                    DateTime.Now.ToLongDateString());
-                txtWriter.WriteLine("  :");
-                txtWriter.WriteLine("  :{0}", logMessage);
-                txtWriter.WriteLine("-------------------------------");
+                txtWriter.WriteLine($"{DateTime.Now.ToShortTimeString()} {DateTime.Now.ToShortDateString()} : {logMessage}");
             }
             catch (Exception ex)
             {
