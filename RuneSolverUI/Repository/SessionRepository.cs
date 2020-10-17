@@ -61,8 +61,9 @@ namespace RuneSolverUI.Repository
         public void RemoveSession(Sessions session)
         {
             using var context = new runesolverContext();
-            if (session != null && context.Sessions.Find(session.PkSessionId) != null)
-            {
+            session = context.Sessions.Find(session?.PkSessionId);
+            if (session != null)
+            {                
                 context.Sessions.Remove(session);
                 context.SaveChanges();
             }

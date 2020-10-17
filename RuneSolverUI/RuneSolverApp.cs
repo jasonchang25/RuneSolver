@@ -263,6 +263,7 @@ namespace RuneSolverUI
             else
             {
                 _user = null;
+                _sessionRepository.RemoveSession(_session);
                 checkLoginStatus();
             }
         }
