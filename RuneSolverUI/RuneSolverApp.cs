@@ -33,6 +33,7 @@ namespace RuneSolverUI
         private delegate void SafeCastHeal();
         private delegate void SafeOpenEliteBox();
         private delegate void SafeUnstickCharacter();
+        private delegate void SafeCheckExpiry();
         public RuneSolverApp()
         {
             InitializeComponent();            
@@ -56,7 +57,7 @@ namespace RuneSolverUI
                 lb_Status.Text = "Connected";
                 lb_Status.ForeColor = Color.Green;
                 btn_login.Text = "Log Out";
-                if (_user.Expiry > DateTime.Now)
+                if (DateTime.UtcNow < _user.Expiry)
                 {
                     lb_expiryDate.Text = _user.Expiry.ToShortDateString();
                     btn_toggleOnOff.Enabled = true;
@@ -68,7 +69,7 @@ namespace RuneSolverUI
                     lb_expiryDate.Text = "Expired";
                     btn_toggleOnOff.Enabled = false;
                     btn_toggleOnOff.BackColor = Color.Gray;
-                    _logWriter.LogWrite("User login failed user license expired");
+                    _logWriter.LogWrite("User license expired");
                 }
             }
         }
@@ -106,6 +107,7 @@ namespace RuneSolverUI
                         if (timeTracker == 0)
                         {
                             _sessionRepository.ExtendSession(_session);
+                            CheckExpiry();
                             timeTracker = 300000;
                         }
 
@@ -141,6 +143,33 @@ namespace RuneSolverUI
                 } while (true);
             });
             _worker.RunWorkerAsync();
+        }
+
+        private void CheckExpiry()
+        {
+            try
+            {
+                if (DateTime.UtcNow > _user.Expiry)
+                {
+                    if (_isRunning)
+                    {
+                        if (btn_toggleOnOff.InvokeRequired)
+                        {
+                            var d = new SafeCheckExpiry(CheckExpiry);
+                            btn_toggleOnOff.Invoke(d, new object[] { });
+                        }
+                        else
+                        {
+                            btn_toggleOnOff.PerformClick();
+                        }
+                    }
+                    checkLoginStatus();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logWriter.LogWrite(ex.Message);
+            }
         }
 
         private void CastHeal()
