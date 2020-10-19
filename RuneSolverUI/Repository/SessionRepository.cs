@@ -24,6 +24,7 @@ namespace RuneSolverUI.Repository
         public void ExtendSession(Sessions session)
         {
             using var context = new runesolverContext();
+            session = context.Sessions.Find(session.PkSessionId);
             session.Expiry = DateTime.UtcNow.AddMinutes(6);
             context.SaveChanges();
         }
