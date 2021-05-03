@@ -44,6 +44,15 @@ namespace RuneSolverUI
             this.tb_username = new System.Windows.Forms.TextBox();
             this.lb_username = new System.Windows.Forms.Label();
             this.grp_Settings = new System.Windows.Forms.GroupBox();
+            this.ddl_antiDeathTime = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.ddl_unstickCharTime = new System.Windows.Forms.ComboBox();
+            this.lb_yukiKey = new System.Windows.Forms.Label();
+            this.cb_enableYuki = new System.Windows.Forms.CheckBox();
+            this.ddl_yukiKey = new System.Windows.Forms.ComboBox();
+            this.lb_yuki = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.cb_enableUnstickCharacter = new System.Windows.Forms.CheckBox();
             this.ddl_jumpKey = new System.Windows.Forms.ComboBox();
             this.lb_jumpKey = new System.Windows.Forms.Label();
@@ -57,17 +66,29 @@ namespace RuneSolverUI
             this.lb_eliteBoxKey = new System.Windows.Forms.Label();
             this.lb_eliteBox = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.lb = new System.Windows.Forms.Label();
             this.btn_toggleOnOff = new System.Windows.Forms.Button();
             this.tt_antiDeathLoop = new System.Windows.Forms.ToolTip(this.components);
             this.tt_unstickCharacter = new System.Windows.Forms.ToolTip(this.components);
             this.lb_information = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lb_contact = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.grp_Settings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.label4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -83,7 +104,7 @@ namespace RuneSolverUI
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.tb_username);
             this.groupBox1.Controls.Add(this.lb_username);
-            this.groupBox1.Location = new System.Drawing.Point(3, 8);
+            this.groupBox1.Location = new System.Drawing.Point(382, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(222, 159);
             this.groupBox1.TabIndex = 4;
@@ -192,6 +213,15 @@ namespace RuneSolverUI
             // grp_Settings
             // 
             this.grp_Settings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.grp_Settings.Controls.Add(this.ddl_antiDeathTime);
+            this.grp_Settings.Controls.Add(this.label8);
+            this.grp_Settings.Controls.Add(this.label9);
+            this.grp_Settings.Controls.Add(this.ddl_unstickCharTime);
+            this.grp_Settings.Controls.Add(this.lb_yukiKey);
+            this.grp_Settings.Controls.Add(this.cb_enableYuki);
+            this.grp_Settings.Controls.Add(this.ddl_yukiKey);
+            this.grp_Settings.Controls.Add(this.lb_yuki);
+            this.grp_Settings.Controls.Add(this.pictureBox3);
             this.grp_Settings.Controls.Add(this.cb_enableUnstickCharacter);
             this.grp_Settings.Controls.Add(this.ddl_jumpKey);
             this.grp_Settings.Controls.Add(this.lb_jumpKey);
@@ -205,19 +235,206 @@ namespace RuneSolverUI
             this.grp_Settings.Controls.Add(this.lb_eliteBoxKey);
             this.grp_Settings.Controls.Add(this.lb_eliteBox);
             this.grp_Settings.Controls.Add(this.pictureBox1);
-            this.grp_Settings.Location = new System.Drawing.Point(3, 173);
+            this.grp_Settings.Location = new System.Drawing.Point(12, 172);
             this.grp_Settings.Name = "grp_Settings";
-            this.grp_Settings.Size = new System.Drawing.Size(222, 242);
+            this.grp_Settings.Size = new System.Drawing.Size(592, 242);
             this.grp_Settings.TabIndex = 5;
             this.grp_Settings.TabStop = false;
             this.grp_Settings.Text = "Extra Features";
+            // 
+            // ddl_antiDeathTime
+            // 
+            this.ddl_antiDeathTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddl_antiDeathTime.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ddl_antiDeathTime.FormattingEnabled = true;
+            this.ddl_antiDeathTime.Items.AddRange(new object[] {
+            "15",
+            "30",
+            "45",
+            "60",
+            "75",
+            "90",
+            "105",
+            "120",
+            "135",
+            "150",
+            "165",
+            "180",
+            "195",
+            "210",
+            "225",
+            "240",
+            "255",
+            "270",
+            "285",
+            "300"});
+            this.ddl_antiDeathTime.Location = new System.Drawing.Point(218, 117);
+            this.ddl_antiDeathTime.Name = "ddl_antiDeathTime";
+            this.ddl_antiDeathTime.Size = new System.Drawing.Size(60, 23);
+            this.ddl_antiDeathTime.TabIndex = 2;
+            this.ddl_antiDeathTime.SelectedIndexChanged += new System.EventHandler(this.ddl_antiDeathTime_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Location = new System.Drawing.Point(284, 120);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(24, 15);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "sec";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Location = new System.Drawing.Point(284, 192);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(24, 15);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "sec";
+            // 
+            // ddl_unstickCharTime
+            // 
+            this.ddl_unstickCharTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddl_unstickCharTime.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ddl_unstickCharTime.FormattingEnabled = true;
+            this.ddl_unstickCharTime.Items.AddRange(new object[] {
+            "15",
+            "30",
+            "45",
+            "60",
+            "75",
+            "90",
+            "105",
+            "120",
+            "135",
+            "150",
+            "165",
+            "180",
+            "195",
+            "210",
+            "225",
+            "240",
+            "255",
+            "270",
+            "285",
+            "300"});
+            this.ddl_unstickCharTime.Location = new System.Drawing.Point(218, 189);
+            this.ddl_unstickCharTime.Name = "ddl_unstickCharTime";
+            this.ddl_unstickCharTime.Size = new System.Drawing.Size(60, 23);
+            this.ddl_unstickCharTime.TabIndex = 2;
+            this.ddl_unstickCharTime.SelectedIndexChanged += new System.EventHandler(this.ddl_unstickCharTime_SelectedIndexChanged);
+            // 
+            // lb_yukiKey
+            // 
+            this.lb_yukiKey.AutoSize = true;
+            this.lb_yukiKey.BackColor = System.Drawing.Color.Transparent;
+            this.lb_yukiKey.Location = new System.Drawing.Point(377, 40);
+            this.lb_yukiKey.Name = "lb_yukiKey";
+            this.lb_yukiKey.Size = new System.Drawing.Size(32, 15);
+            this.lb_yukiKey.TabIndex = 1;
+            this.lb_yukiKey.Text = "Key :";
+            // 
+            // cb_enableYuki
+            // 
+            this.cb_enableYuki.AutoSize = true;
+            this.cb_enableYuki.BackColor = System.Drawing.Color.Transparent;
+            this.cb_enableYuki.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cb_enableYuki.Location = new System.Drawing.Point(374, 69);
+            this.cb_enableYuki.Name = "cb_enableYuki";
+            this.cb_enableYuki.Size = new System.Drawing.Size(165, 19);
+            this.cb_enableYuki.TabIndex = 3;
+            this.cb_enableYuki.Text = "Enable Yuki cast after rune";
+            this.cb_enableYuki.UseVisualStyleBackColor = false;
+            this.cb_enableYuki.CheckedChanged += new System.EventHandler(this.cb_enableYuki_CheckedChanged);
+            // 
+            // ddl_yukiKey
+            // 
+            this.ddl_yukiKey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddl_yukiKey.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ddl_yukiKey.FormattingEnabled = true;
+            this.ddl_yukiKey.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "F2",
+            "F3",
+            "F4",
+            "F5",
+            "F6",
+            "F7",
+            "F8",
+            "F9",
+            "F10",
+            "F11",
+            "F12",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"});
+            this.ddl_yukiKey.Location = new System.Drawing.Point(415, 37);
+            this.ddl_yukiKey.Name = "ddl_yukiKey";
+            this.ddl_yukiKey.Size = new System.Drawing.Size(97, 23);
+            this.ddl_yukiKey.TabIndex = 2;
+            this.ddl_yukiKey.SelectedIndexChanged += new System.EventHandler(this.ddl_yukiKey_SelectedIndexChanged);
+            // 
+            // lb_yuki
+            // 
+            this.lb_yuki.AutoSize = true;
+            this.lb_yuki.BackColor = System.Drawing.Color.Transparent;
+            this.lb_yuki.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lb_yuki.Location = new System.Drawing.Point(312, 19);
+            this.lb_yuki.Name = "lb_yuki";
+            this.lb_yuki.Size = new System.Drawing.Size(83, 15);
+            this.lb_yuki.TabIndex = 1;
+            this.lb_yuki.Text = "Yuki-musume";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(312, 40);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(48, 43);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
             // 
             // cb_enableUnstickCharacter
             // 
             this.cb_enableUnstickCharacter.AutoSize = true;
             this.cb_enableUnstickCharacter.BackColor = System.Drawing.Color.Transparent;
             this.cb_enableUnstickCharacter.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cb_enableUnstickCharacter.Location = new System.Drawing.Point(6, 218);
+            this.cb_enableUnstickCharacter.Location = new System.Drawing.Point(12, 218);
             this.cb_enableUnstickCharacter.Name = "cb_enableUnstickCharacter";
             this.cb_enableUnstickCharacter.Size = new System.Drawing.Size(163, 19);
             this.cb_enableUnstickCharacter.TabIndex = 9;
@@ -279,7 +496,7 @@ namespace RuneSolverUI
             "Y",
             "Z",
             "ALT"});
-            this.ddl_jumpKey.Location = new System.Drawing.Point(109, 189);
+            this.ddl_jumpKey.Location = new System.Drawing.Point(115, 189);
             this.ddl_jumpKey.Name = "ddl_jumpKey";
             this.ddl_jumpKey.Size = new System.Drawing.Size(97, 23);
             this.ddl_jumpKey.TabIndex = 8;
@@ -289,7 +506,7 @@ namespace RuneSolverUI
             // 
             this.lb_jumpKey.AutoSize = true;
             this.lb_jumpKey.BackColor = System.Drawing.Color.Transparent;
-            this.lb_jumpKey.Location = new System.Drawing.Point(6, 192);
+            this.lb_jumpKey.Location = new System.Drawing.Point(12, 192);
             this.lb_jumpKey.Name = "lb_jumpKey";
             this.lb_jumpKey.Size = new System.Drawing.Size(64, 15);
             this.lb_jumpKey.TabIndex = 1;
@@ -300,7 +517,7 @@ namespace RuneSolverUI
             this.lb_unstick.AutoSize = true;
             this.lb_unstick.BackColor = System.Drawing.Color.Transparent;
             this.lb_unstick.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_unstick.Location = new System.Drawing.Point(6, 171);
+            this.lb_unstick.Location = new System.Drawing.Point(12, 171);
             this.lb_unstick.Name = "lb_unstick";
             this.lb_unstick.Size = new System.Drawing.Size(106, 15);
             this.lb_unstick.TabIndex = 1;
@@ -312,7 +529,7 @@ namespace RuneSolverUI
             this.cb_antiDeathLoop.AutoSize = true;
             this.cb_antiDeathLoop.BackColor = System.Drawing.Color.Transparent;
             this.cb_antiDeathLoop.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cb_antiDeathLoop.Location = new System.Drawing.Point(6, 144);
+            this.cb_antiDeathLoop.Location = new System.Drawing.Point(9, 146);
             this.cb_antiDeathLoop.Name = "cb_antiDeathLoop";
             this.cb_antiDeathLoop.Size = new System.Drawing.Size(156, 19);
             this.cb_antiDeathLoop.TabIndex = 3;
@@ -373,7 +590,7 @@ namespace RuneSolverUI
             "X",
             "Y",
             "Z"});
-            this.ddl_potionHakuKey.Location = new System.Drawing.Point(109, 115);
+            this.ddl_potionHakuKey.Location = new System.Drawing.Point(112, 117);
             this.ddl_potionHakuKey.Name = "ddl_potionHakuKey";
             this.ddl_potionHakuKey.Size = new System.Drawing.Size(97, 23);
             this.ddl_potionHakuKey.TabIndex = 2;
@@ -383,7 +600,7 @@ namespace RuneSolverUI
             // 
             this.lb_potionHakuKey.AutoSize = true;
             this.lb_potionHakuKey.BackColor = System.Drawing.Color.Transparent;
-            this.lb_potionHakuKey.Location = new System.Drawing.Point(6, 118);
+            this.lb_potionHakuKey.Location = new System.Drawing.Point(9, 120);
             this.lb_potionHakuKey.Name = "lb_potionHakuKey";
             this.lb_potionHakuKey.Size = new System.Drawing.Size(103, 15);
             this.lb_potionHakuKey.TabIndex = 1;
@@ -394,7 +611,7 @@ namespace RuneSolverUI
             this.lb_antiDeathLoop.AutoSize = true;
             this.lb_antiDeathLoop.BackColor = System.Drawing.Color.Transparent;
             this.lb_antiDeathLoop.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_antiDeathLoop.Location = new System.Drawing.Point(6, 94);
+            this.lb_antiDeathLoop.Location = new System.Drawing.Point(9, 96);
             this.lb_antiDeathLoop.Name = "lb_antiDeathLoop";
             this.lb_antiDeathLoop.Size = new System.Drawing.Size(97, 15);
             this.lb_antiDeathLoop.TabIndex = 1;
@@ -506,23 +723,22 @@ namespace RuneSolverUI
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // panel1
+            // lb
             // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.btn_toggleOnOff);
-            this.panel1.Controls.Add(this.grp_Settings);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Location = new System.Drawing.Point(373, -4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(236, 464);
-            this.panel1.TabIndex = 0;
+            this.lb.AutoSize = true;
+            this.lb.BackColor = System.Drawing.Color.Transparent;
+            this.lb.Location = new System.Drawing.Point(9, 183);
+            this.lb.Name = "lb";
+            this.lb.Size = new System.Drawing.Size(106, 15);
+            this.lb.TabIndex = 1;
+            this.lb.Text = "Interval (seconds) :";
             // 
             // btn_toggleOnOff
             // 
             this.btn_toggleOnOff.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(188)))), ((int)(((byte)(18)))));
             this.btn_toggleOnOff.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_toggleOnOff.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_toggleOnOff.Location = new System.Drawing.Point(3, 419);
+            this.btn_toggleOnOff.Location = new System.Drawing.Point(382, 416);
             this.btn_toggleOnOff.Name = "btn_toggleOnOff";
             this.btn_toggleOnOff.Size = new System.Drawing.Size(222, 40);
             this.btn_toggleOnOff.TabIndex = 10;
@@ -574,6 +790,238 @@ namespace RuneSolverUI
             this.lb_contact.TabIndex = 2;
             this.lb_contact.Text = "Discord Psyren#7724 for any inquiries or questions";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Controls.Add(this.label7);
+            this.label4.Controls.Add(this.checkBox2);
+            this.label4.Controls.Add(this.comboBox2);
+            this.label4.Controls.Add(this.label6);
+            this.label4.Controls.Add(this.pictureBox2);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(198, 87);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(109, 15);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Rare Treasure Box";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Location = new System.Drawing.Point(70, 32);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 15);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Key :";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox2.Location = new System.Drawing.Point(67, 58);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(144, 19);
+            this.checkBox2.TabIndex = 3;
+            this.checkBox2.Text = "Auto Open Elite Box :";
+            this.checkBox2.UseVisualStyleBackColor = false;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.cb_openEliteBox_CheckedChanged);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "F2",
+            "F3",
+            "F4",
+            "F5",
+            "F6",
+            "F7",
+            "F8",
+            "F9",
+            "F10",
+            "F11",
+            "F12",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"});
+            this.comboBox2.Location = new System.Drawing.Point(108, 29);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(97, 23);
+            this.comboBox2.TabIndex = 2;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.ddl_eliteBoxKey_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(8, 8);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(109, 15);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Rare Treasure Box";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(8, 29);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(48, 43);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "F2",
+            "F3",
+            "F4",
+            "F5",
+            "F6",
+            "F7",
+            "F8",
+            "F9",
+            "F10",
+            "F11",
+            "F12",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"});
+            this.comboBox1.Location = new System.Drawing.Point(298, 108);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(97, 23);
+            this.comboBox1.TabIndex = 2;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ddl_eliteBoxKey_SelectedIndexChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox1.Location = new System.Drawing.Point(257, 137);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(138, 19);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "Auto Open Elite Box :";
+            this.checkBox1.UseVisualStyleBackColor = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.cb_openEliteBox_CheckedChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(260, 111);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(32, 15);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Key :";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "15",
+            "30",
+            "45",
+            "60",
+            "75",
+            "90",
+            "105",
+            "120",
+            "135",
+            "150",
+            "165",
+            "180",
+            "195",
+            "210",
+            "225",
+            "240",
+            "255",
+            "270",
+            "285",
+            "300"});
+            this.comboBox4.Location = new System.Drawing.Point(518, 37);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(60, 23);
+            this.comboBox4.TabIndex = 2;
+            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.ddl_eliteBoxKey_SelectedIndexChanged);
+            // 
             // RuneSolverApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -581,10 +1029,12 @@ namespace RuneSolverUI
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(607, 459);
+            this.Controls.Add(this.btn_toggleOnOff);
             this.Controls.Add(this.lb_contact);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grp_Settings);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lb_information);
-            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -595,8 +1045,11 @@ namespace RuneSolverUI
             this.groupBox1.PerformLayout();
             this.grp_Settings.ResumeLayout(false);
             this.grp_Settings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.label4.ResumeLayout(false);
+            this.label4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -611,7 +1064,6 @@ namespace RuneSolverUI
         private TextBox tb_username;
         private Label lb_username;
         private GroupBox grp_Settings;
-        private Panel panel1;
         private Label lb_expiry;
         private Label lb_expiryDate;
         private Label lb_eliteBoxKey;
@@ -636,5 +1088,26 @@ namespace RuneSolverUI
         private Label lb_contact;
         private TextBox tb_password;
         private CheckBox cb_saveLogin;
+        private Label label9;
+        private ComboBox ddl_unstickCharTime;
+        private Label lb;
+        private Label lb_yukiKey;
+        private CheckBox cb_enableYuki;
+        private ComboBox ddl_yukiKey;
+        private Label lb_yuki;
+        private PictureBox pictureBox3;
+        private Label label4;
+        private Label label7;
+        private CheckBox checkBox2;
+        private ComboBox comboBox2;
+        private Label label6;
+        private PictureBox pictureBox2;
+        private ComboBox comboBox1;
+        private CheckBox checkBox1;
+        private Label label5;
+        private Label _;
+        private ComboBox comboBox4;
+        private ComboBox ddl_antiDeathTime;
+        private Label label8;
     }
 }

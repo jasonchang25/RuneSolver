@@ -57,12 +57,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+  <data name="pictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
   <data name="lb_unstick.ToolTip" xml:space="preserve">
     <value>Depending on the map your character may get stuck on a ladder or rope. 
 Although the macro does auto fix eventually to optimise farming rates we can manually jump off at a more frequent rate. 
 NOTE: You may get better rates on certain maps without this feature on</value>
   </data>
-  <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB0AAAAcCAYAAACdz7SqAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO

@@ -34,6 +34,8 @@ namespace RuneSolverUI
         private delegate void SafeOpenEliteBox();
         private delegate void SafeUnstickCharacter();
         private delegate void SafeCheckExpiry();
+        private delegate void YukiCast();
+
         public RuneSolverApp()
         {
             InitializeComponent();            
@@ -85,14 +87,20 @@ namespace RuneSolverUI
             cb_antiDeathLoop.Checked = Properties.Settings.Default.AntiDeathActivated;
             ddl_jumpKey.SelectedItem = Properties.Settings.Default.JumpKey;
             cb_enableUnstickCharacter.Checked = Properties.Settings.Default.UnstickCharacterActivated;
+            ddl_antiDeathTime.SelectedItem = Properties.Settings.Default.AntiDeathTime;
+            ddl_unstickCharTime.SelectedItem = Properties.Settings.Default.JumpTime;
+            ddl_yukiKey.SelectedItem = Properties.Settings.Default.YukiKey;
+            cb_enableYuki.Checked = Properties.Settings.Default.YukiActivated;
         }
 
         private void Process()
         {            
             CustomVisionPredictionClient predictionApi = AuthenticatePrediction(_ENDPOINT, _predictionKey);
             var path = Directory.GetCurrentDirectory();
-            var runeImage = "2.png";
-            var timeTracker = 300000;
+            var runeImage = "2.png"; // "2.png";
+            var timeTracker = 300;
+            var antiDeathTime = ddl_antiDeathTime.SelectedItem;
+            var unstickCharTime = ddl_unstickCharTime.SelectedItem;
             _worker = new BackgroundWorker();
             _worker.WorkerSupportsCancellation = true;            
             _worker.DoWork += new DoWorkEventHandler((state, args) =>
@@ -108,18 +116,20 @@ namespace RuneSolverUI
                         {
                             _sessionRepository.ExtendSession(_session);
                             CheckExpiry();
-                            timeTracker = 300000;
+                            timeTracker = 300;
                         }
 
-                        if (timeTracker % 30000 == 0)
+                        if (cb_antiDeathLoop.Checked)
                         {
-                            if (cb_antiDeathLoop.Checked) CastHeal();
+                            if ((antiDeathTime == null && timeTracker % 30 == 0) || timeTracker % Int32.Parse(antiDeathTime.ToString()) == 0) CastHeal();
                         }
-                        if (timeTracker % 60000 == 0)
+
+                        if (cb_enableUnstickCharacter.Checked)
                         {
-                            if (cb_enableUnstickCharacter.Checked) UnstickCharacter();
+                            if ((unstickCharTime == null && timeTracker % 60 == 0) || timeTracker % Int32.Parse(unstickCharTime.ToString()) == 0) UnstickCharacter();
                         }
-                        if (timeTracker % 150000 == 0)
+
+                        if (timeTracker % 150 == 0)
                         {
                             if (cb_openEliteBox.Checked) OpenEliteBox();
                         }
@@ -133,7 +143,7 @@ namespace RuneSolverUI
                             _logWriter.LogWrite("Rune Solved");
                             File.Delete(runeImage);
                         }
-                        timeTracker -= 5000;
+                        timeTracker -= 5;
                         Thread.Sleep(5000);
                     }
                     catch (Exception ex)
@@ -221,6 +231,33 @@ namespace RuneSolverUI
             }                        
         }
 
+        private void CastYuki()
+        {
+            try
+            {
+                if (ddl_yukiKey.InvokeRequired)
+                {
+                    var d = new YukiCast(CastYuki);
+                    ddl_yukiKey.Invoke(d, new object[] { });
+                }
+                else
+                {
+                    _logWriter.LogWrite("Casting Yuki after Rune");
+                    for (int i = 0; i < 4; i++)
+                    {
+                        KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_yukiKey.SelectedItem.ToString())), false, KeyInput.InputType.Keyboard);
+                        Thread.Sleep(250);
+                        KeyInput.SendKey((KeyInput.DirectXKeyStrokes)Enum.Parse(typeof(KeyInput.DirectXKeyStrokes), String.Concat("DIK_", ddl_yukiKey.SelectedItem.ToString())), true, KeyInput.InputType.Keyboard);
+                        Thread.Sleep(250);
+                    }                    
+                }
+            }
+            catch (Exception ex)
+            {
+                _logWriter.LogWrite(ex.Message);
+            }
+        }
+
         private void OpenEliteBox()
         {
             try
@@ -256,25 +293,31 @@ namespace RuneSolverUI
                     {
                         case "left":
                             KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, false, KeyInput.InputType.Keyboard);
+                            Thread.Sleep(250);
+                            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, true, KeyInput.InputType.Keyboard);
                             break;
                         case "right":
                             KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_RIGHTARROW, false, KeyInput.InputType.Keyboard);
+                            Thread.Sleep(250);
+                            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_RIGHTARROW, true, KeyInput.InputType.Keyboard);
                             break;
                         case "down":
                             KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_DOWNARROW, false, KeyInput.InputType.Keyboard);
+                            Thread.Sleep(250);
+                            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_DOWNARROW, true, KeyInput.InputType.Keyboard);
                             break;
                         case "up":
                             KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_UPARROW, false, KeyInput.InputType.Keyboard);
+                            Thread.Sleep(250);
+                            KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_UPARROW, true, KeyInput.InputType.Keyboard);
                             break;
                         default:
                             break;
                     }
-                    Thread.Sleep(500);
+                    Thread.Sleep(250);
                 }
-                KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_LEFTARROW, true, KeyInput.InputType.Keyboard);
-                KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_RIGHTARROW, true, KeyInput.InputType.Keyboard);
-                KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_DOWNARROW, true, KeyInput.InputType.Keyboard);
-                KeyInput.SendKey(KeyInput.DirectXKeyStrokes.DIK_UPARROW, true, KeyInput.InputType.Keyboard);
+
+                if (cb_enableYuki.Checked) CastYuki();
             }
             catch (Exception ex)
             {
@@ -429,5 +472,30 @@ namespace RuneSolverUI
             Properties.Settings.Default.UnstickCharacterActivated = cb_enableUnstickCharacter.Checked;
             Properties.Settings.Default.Save();
         }
+
+        private void ddl_antiDeathTime_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AntiDeathTime = ddl_antiDeathTime.SelectedItem.ToString();
+            Properties.Settings.Default.Save();
+        }
+
+        private void ddl_unstickCharTime_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.JumpTime = ddl_unstickCharTime.SelectedItem.ToString();
+            Properties.Settings.Default.Save();
+        }
+
+        private void ddl_yukiKey_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.YukiKey = ddl_yukiKey.SelectedItem.ToString();
+            Properties.Settings.Default.Save();
+        }
+
+        private void cb_enableYuki_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.YukiActivated = cb_enableYuki.Checked;
+            Properties.Settings.Default.Save();
+        }
+        
     }
 }
