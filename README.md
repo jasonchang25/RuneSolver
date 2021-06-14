@@ -2,7 +2,7 @@
 
 _Note - Method has been patched a long time ago and source code has been released for educational purposes only._
 
-RuneSolver is a SaaS desktop application used in conjunction with macro programs to solve Maplestory's directional arrow captcha puzzles with a 90% degree of accuracy. In addition several other in game quality of life features have automated to improve farming rates.
+RuneSolver is a SaaS desktop application used in conjunction with macro programs to solve Maplestory's directional arrow captcha puzzles with a 95% degree of accuracy. In addition several other in game quality of life features have automated to improve farming rates.
 
 <strong>Specifications:</strong>
     
